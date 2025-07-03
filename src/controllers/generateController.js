@@ -5,10 +5,6 @@ module.exports = {
   POST: async (req, res) => {
     const { items, length } = req.body;
 
-    if (!Array.isArray(items) || typeof length !== 'number') {
-      return res.status(400).json({ error: 'Invalid input' });
-    }
-
     const itemNames = mapItemsToNames(items);
     const combinations = generateCombinations(itemNames, length);
 

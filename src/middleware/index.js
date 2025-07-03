@@ -1,3 +1,4 @@
 const logger = require('./logger');
+const validateInput = require('./validateInput');
 
-module.exports = { logger };
+module.exports = { logger,validateInput };
