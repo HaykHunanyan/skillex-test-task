@@ -1,5 +1,5 @@
 const express = require('express');
-const api = require('./src/api/api.js');
+const api = require('./src/api/routes.js');
 const {logger} = require('./src/middleware');
 require('dotenv').config();
 

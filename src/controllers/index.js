@@ -1,3 +1,3 @@
-const generate = require('./generate');
+const generateController = require('./generateController');
 
-module.exports = { generate };
+module.exports = { generateController };
