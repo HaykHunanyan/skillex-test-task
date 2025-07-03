@@ -6,6 +6,7 @@
   "scripts": {
     "start": "node app.js",
     "dev": "nodemon app.js",
+    "dbSetup": "mysql -u root test_db < src/sql/schema.sql",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "format": "prettier --write .",
@@ -24,6 +25,7 @@
   "dependencies": {
     "dotenv": "^17.0.1",
     "express": "^5.1.0",
+    "mysql2": "^3.14.1",
     "nodemon": "^3.1.10"
   },
   "devDependencies": {
