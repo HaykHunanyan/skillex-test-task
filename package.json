@@ -1,0 +1,28 @@
+{
+  "name": "skillex-test-task",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HaykHunanyan/skillex-test-task.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/HaykHunanyan/skillex-test-task/issues"
+  },
+  "homepage": "https://github.com/HaykHunanyan/skillex-test-task#readme",
+  "dependencies": {
+    "dotenv": "^17.0.1",
+    "express": "^5.1.0"
+  },
+  "devDependencies": {
+    "eslint-config-prettier": "^10.1.5",
+    "eslint-plugin-prettier": "^5.5.1",
+    "prettier": "^3.6.2"
+  }
+}
