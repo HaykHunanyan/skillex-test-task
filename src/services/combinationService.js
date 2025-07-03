@@ -22,7 +22,9 @@ async function storeCombinations(conn, itemNames, combinations) {
 
   const ids = [];
   for (const combo of combinations) {
-    const [res] = await conn.execute('INSERT INTO combinations (combination) VALUES (?)', [JSON.stringify(combo)]);
+    const [res] = await conn.execute('INSERT INTO combinations (combination) VALUES (?)', [
+      JSON.stringify(combo),
+    ]);
     await conn.execute('INSERT INTO responses (combination_id) VALUES (?)', [res.insertId]);
     ids.push(res.insertId);
   }

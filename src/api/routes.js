@@ -1,6 +1,6 @@
 const { Router } = require('express');
 const { generateController } = require('../controllers');
-const {validateInput} = require('../middleware');
+const { validateInput } = require('../middleware');
 
 const router = Router();
 

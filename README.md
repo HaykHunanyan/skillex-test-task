@@ -17,10 +17,9 @@ This API receives a list of item types (represented by numbers) and a required c
 - **Prettier** — code formatter for consistent style
 - Modular architecture: `controllers`, `services`, `utils`, `middleware`, `routers`
 
-
 ---
 
-##  Getting Started
+## Getting Started
 
 ### 1. Clone the repository
 

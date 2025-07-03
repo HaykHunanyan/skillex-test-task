@@ -16,7 +16,7 @@ module.exports = {
 
       res.json({
         id: combinationIDs[0] || null,
-        combination: combinations
+        combination: combinations,
       });
     } catch (err) {
       await conn.rollback();

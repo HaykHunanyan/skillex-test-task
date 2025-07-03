@@ -1,5 +1,5 @@
 function getPrefixChar(num) {
-    return String.fromCharCode(64 + num);
+  return String.fromCharCode(64 + num);
 }
-  
-module.exports = {getPrefixChar};
+
+module.exports = { getPrefixChar };

@@ -23,7 +23,6 @@ function generateCombinations(items, length) {
   return result;
 }
 
-
 module.exports = {
   generateCombinations,
 };
