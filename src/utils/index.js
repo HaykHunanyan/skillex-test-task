@@ -1,3 +1,7 @@
 const {generateCombinations} = require('./combiner');
+const {getPrefixChar} = require('./prefix');
 
-module.exports = { combiner:generateCombinations };
+module.exports = {
+  generateCombinations,
+  getPrefixChar,
+};

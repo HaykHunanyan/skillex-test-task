@@ -1,49 +1,26 @@
+const { mapItemsToNames, generateCombinations, storeCombinations } = require('../services');
 const pool = require('../db/mysql');
-const { combiner } = require('../utils');
 
 module.exports = {
-  GET: async (req, res) => res.status(405).json({ error: 'Method Not Allowed' }),
   POST: async (req, res) => {
     const { items, length } = req.body;
 
-    let counter = {};
+    if (!Array.isArray(items) || typeof length !== 'number') {
+      return res.status(400).json({ error: 'Invalid input' });
+    }
 
-    let itemNames = items.map((num) => {
-      const char = String.fromCharCode(64 + num);
-      counter[char] = (counter[char] || 0) + 1;
-      return `${char}${counter[char]}`;
-    });
-
-    const combinations = combiner(itemNames, length);
+    const itemNames = mapItemsToNames(items);
+    const combinations = generateCombinations(itemNames, length);
 
     const conn = await pool.getConnection();
     try {
       await conn.beginTransaction();
-
-      const itemInsertMap = new Map();
-
-      for (let name of itemNames) {
-        if (!itemInsertMap.has(name)) {
-          const [result] = await conn.execute('INSERT INTO items (name) VALUES (?)', [name]);
-          itemInsertMap.set(name, result.insertId);
-        }
-      }
-
-      const combinationIDs = [];
-      for (let combo of combinations) {
-        const [result] = await conn.execute('INSERT INTO combinations (combination) VALUES (?)', [
-          JSON.stringify(combo),
-        ]);
-        combinationIDs.push(result.insertId);
-
-        await conn.execute('INSERT INTO responses (combination_id) VALUES (?)', [result.insertId]);
-      }
-
+      const combinationIDs = await storeCombinations(conn, itemNames, combinations);
       await conn.commit();
 
-      return res.json({
+      res.json({
         id: combinationIDs[0] || null,
-        combination: combinations,
+        combination: combinations
       });
     } catch (err) {
       await conn.rollback();
@@ -53,4 +30,6 @@ module.exports = {
       conn.release();
     }
   },
+
+  GET: async (req, res) => res.status(405).json({ error: 'Method Not Allowed' }),
 };
